@@ -1,0 +1,10 @@
+ultralytics
+fastapi
+opencv-python
+langchain-community 
+langchain-core       
+huggingface_hub             
+faiss-cpu                   
+PyPDF2                      
+python-dotenv               
+fastapi

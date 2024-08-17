@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.dark .glassmorphism {
+    background: rgba(17, 25, 40, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.chat-message {
+    max-width: 80%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.user-message {
+    background-color: #3b82f6;
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 0;
+}
+
+.bot-message {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    margin-right: auto;
+    border-bottom-left-radius: 0;
+}
+
+.dark .bot-message {
+    background-color: #374151;
+    color: #e5e7eb;
+}
+
+#chatbot {
+    transition: all 0.3s ease-out;
+}
+
+#chatbot.active {
+    transform: translateY(0);
+}
+
+/* Hide the dark mode toggle by default */
+#theme-toggle-light-icon {
+    display: none;
+}
+
+/* Show the light mode toggle by default */
+#theme-toggle-dark-icon {
+    display: block;
+}
+
+/* In dark mode, switch the visibility */
+.dark #theme-toggle-light-icon {
+    display: block;
+}
+
+.dark #theme-toggle-dark-icon {
+    display: none;
+}

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Bovine Classification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static\css\styles.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a","950":"#172554"}
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-800 dark:to-gray-900 min-h-screen transition-colors duration-300">
+    <header class="fixed w-full z-50 bg-white dark:bg-gray-800 shadow-md transition-colors duration-300">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">CEEW</div>
+                <div class="flex items-center space-x-4">
+                    <a href="#home" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Home</a>
+                    <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">About</a>
+                    <a href="#services" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Learning Curve</a>
+                    <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Contact</a>
+                    <button id="theme-toggle" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 transition-colors duration-300">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-20">
+        <section id="home" class="mb-20">
+            <div class="glassmorphism p-8 mb-8 transition-all duration-300 transform hover:scale-105">
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Indian Bovine Classification</h2>
+                <div class="space-y-6">
+                    <div class="relative">
+                        <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Upload Image:</label>
+                        <input type="file" id="image-upload" accept="image/*" class="hidden">
+                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:border-primary-500 transition-colors duration-300">
+                            <div class="space-y-1 text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="flex text-sm text-gray-600">
+                                    <label for="image-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500">
+                                        <span>Upload a file</span>
+                                    </label>
+                                    <p class="pl-1">or drag and drop</p>
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="confidence-threshold" value="0.25">
+                    <input type="hidden" id="iou-threshold" value="0.45">
+                    <button id="predict-button" class="w-full px-4 py-2 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:focus:ring-primary-900 transition-colors duration-300 transform hover:scale-105">Predict</button>
+                </div>
+                <img id="result-image" alt="Result" class="mt-8 rounded-lg shadow-md max-w-full h-auto hidden">
+                <div id="detection-results" class="mt-8 p-6 bg-white dark:bg-gray-700 rounded-lg shadow-inner hidden transition-colors duration-300"></div>
+            </div>
+        </section>
+
+        <section id="about" class="mb-20">
+            <div class="glassmorphism p-8 transition-all duration-300">
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">About CEEW</h2>
+                <p class="text-gray-700 dark:text-gray-300 mb-6">
+                    The Council on Energy, Environment and Water is one of Asia's leading not-for-profit policy 
+                    research institutions. CEEW uses data, integrated analysis, and strategic outreach to explain 
+                    – and change – the use, reuse, and misuse of resources.
+                </p>
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Our Values</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                        <h4 class="text-xl font-semibold text-primary-600 dark:text-primary-400 mb-2">Integrated</h4>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Be it of disciplines, cultures, teams, or points of view - synergies and respect drive our research, outreach and behaviour.
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                        <h4 class="text-xl font-semibold text-primary-600 dark:text-primary-400 mb-2">International</h4>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Focus on understanding global challenges and implications for India's development. All research outputs internationally relevant.
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                        <h4 class="text-xl font-semibold text-primary-600 dark:text-primary-400 mb-2">Independent</h4>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Funding and findings are mutually exclusive. Non-partisan. Editorial independence is sacred.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <div id="chat-icon" class="fixed bottom-6 right-6 w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:bg-primary-700 transition-all duration-300 transform hover:scale-110 z-50">
+        <img src="static\images\cow.png" alt="Chat Icon" class="w-10 h-10">
+    </div>
+
+    <div id="chatbot" class="fixed bottom-0 right-6 w-96 bg-white dark:bg-gray-800 rounded-t-lg shadow-2xl overflow-hidden transition-all duration-300 z-40">
+        <div class="bg-primary-600 dark:bg-primary-800 px-4 py-3 flex justify-between items-center">
+            <h3 class="text-white font-semibold">AI Assistant</h3>
+            <button id="close-chat" class="text-white hover:text-gray-200 transition-colors duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="h-96 overflow-y-auto px-4 py-3 bg-gray-100 dark:bg-gray-700" id="chat-messages"></div>
+        <div class="px-4 py-3 bg-white dark:bg-gray-800">
+            <div class="flex space-x-2">
+                <input type="text" id="user-input" placeholder="Ask about the image..." class="flex-grow px-3 py-2 text-sm text-gray-900 bg-gray-100 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition-colors duration-300">
+                <button id="send-button" class="px-4 py-2 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm dark:focus:ring-primary-900 transition-colors duration-300">Send</button>
+            </div>
+        </div>
+    </div>
+    <section id="services" class="mb-20">
+        <div class="glassmorphism p-8 transition-all duration-300">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-10 text-center">Research to Action - CEEW's Arc of Learning</h2>
+            <div class="space-y-12">
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <img src="static\images\1.png" alt="Identify" class="w-10 h-10">
+                            <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Identify & Conceptualize</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">Define research questions with healthy skepticism. Build interdisciplinary teams and design robust methodologies to address complex challenges.</p>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <img src="static\images\3.png" alt="Understand" class="w-10 h-10">
+                            <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Understand & Analyze</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">Conduct thorough research through data collection, maintaining objectivity in methods, and performing evidence-based analysis.</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <img src="static\images\4.png" alt="Convene" class="w-10 h-10">
+                            <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Convene & Communicate</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">Present findings and exchange ideas with experts. Deliver core messages to policymakers, leaders, and the public to drive informed decision-making.</p>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <img src="static\images\6.png" alt="Support" class="w-10 h-10">
+                            <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Support & Implement</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">Facilitate policy processes and pilot interventions, providing innovative solutions to complex policy challenges.</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <img src="static\images\7.png" alt="Reflect" class="w-10 h-10">
+                            <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Reflect & Learn</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">Critically evaluate our research and actions, measure key metrics, and learn from both successes and failures to continuously improve our approach.</p>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <img src="static\images\8.png" alt="Evolve" class="w-10 h-10">
+                            <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Evolve & Innovate</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">Adapt and refine our approaches based on lessons learned, addressing new challenges and opportunities to ensure lasting impact and continuous improvement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="mb-20">
+        <div class="glassmorphism p-8 transition-all duration-300">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Contact Us</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-primary-600 dark:text-primary-400 mb-4">Delhi - Head Office</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Council on Energy, Environment and Water</p>
+                        <p class="text-gray-700 dark:text-gray-300">ISID Campus, 4, Vasant Kunj Institutional Area</p>
+                        <p class="text-gray-700 dark:text-gray-300">New Delhi - 110070, India</p>
+                        <div class="mt-2">
+                            <p class="text-gray-700 dark:text-gray-300">
+                                <i class="fas fa-phone mr-2"></i>
+                                <a href="tel:+911140733300" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">+91 11 4073 3300</a>
+                            </p>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                <i class="fas fa-fax mr-2"></i>
+                                <span>+91 11 4073 3399</span>
+                            </p>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                <i class="fas fa-envelope mr-2"></i>
+                                <a href="mailto:info@ceew.in" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">info@ceew.in</a>
+                            </p>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                <i class="fas fa-briefcase mr-2"></i>
+                                <a href="mailto:jobs@ceew.in" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">jobs@ceew.in</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-primary-600 dark:text-primary-400 mb-4">Lucknow - Project Office</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Council on Energy, Environment and Water</p>
+                        <p class="text-gray-700 dark:text-gray-300">Shalimar Titanium, 5th Floor, TC/G-1/1</p>
+                        <p class="text-gray-700 dark:text-gray-300">Vibhuti Khand, Gomti Nagar, Lucknow</p>
+                        <p class="text-gray-700 dark:text-gray-300">Uttar Pradesh - 226010</p>
+                        <div class="mt-2">
+                            <p class="text-gray-700 dark:text-gray-300">
+                                <i class="fas fa-phone mr-2"></i>
+                                <a href="tel:+910522430180" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">+91 0522 4230180</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-96 md:h-auto">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.8658975188683!2d77.15728561507841!3d28.541188982455133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1d2b37e27c3d%3A0xf02c5d2c8dd4f1b!2sCEEW%20-%20Think%20Tank%20%26%20Policy%20Research%20Org!5e0!3m2!1sen!2sin!4v1628589796626!5m2!1sen!2sin"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        class="rounded-lg shadow-md">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+    <footer class="bg-gray-900 text-white">
+        <!-- Statistics Banner -->
+        <div class="bg-cover bg-center py-10" style="background-image: url('static\images\9.jpg');">
+            <div class="container mx-auto px-4">
+                <p class="text-center text-xl mb-8 font-light">CEEW uses data, integrated analysis, and strategic outreach to explain – and change – the use, reuse, and misuse of resources.</p>
+                <div class="flex flex-wrap justify-center items-center gap-8">
+                    <div class="flex items-center">
+                        <img src="static\images\10.png" alt="Research Projects" class="w-12 h-12 mr-4">
+                        <div>
+                            <p class="text-3xl font-bold">450+</p>
+                            <p class="text-sm">research projects</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <img src="static\images\11.png" alt="Publications" class="w-12 h-12 mr-4">
+                        <div>
+                            <p class="text-3xl font-bold">380+</p>
+                            <p class="text-sm">peer-reviewed publications</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <img src="static\images\12.png" alt="Government Engagements" class="w-12 h-12 mr-4">
+                        <div>
+                            <p class="text-3xl font-bold">1430+</p>
+                            <p class="text-sm">government engagements worldwide</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <img src="static\images\13.png" alt="Seminars and Conferences" class="w-12 h-12 mr-4">
+                        <div>
+                            <p class="text-3xl font-bold">540+</p>
+                            <p class="text-sm">seminars and conferences</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+       <footer class="bg-gray-900 text-white">
+    <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+            <!-- Contact Information -->
+            <div>
+                <h3 class="text-xl font-semibold mb-4">CONTACT US</h3>
+                <p class="mb-2">Council on Energy, Environment and Water</p>
+                <p class="mb-2">ISID Campus, 4, Vasant Kunj Institutional Area</p>
+                <p class="mb-4">New Delhi - 110070, India</p>
+                <p class="mb-2"><a href="tel:+911140733300" class="hover:text-blue-400 transition-colors duration-300">+91 11 4073 3300</a></p>
+                <p class="mb-2"><a href="mailto:info@ceew.in" class="hover:text-blue-400 transition-colors duration-300">info@ceew.in</a></p>
+                <p class="mb-4"><a href="mailto:jobs@ceew.in" class="hover:text-blue-400 transition-colors duration-300">jobs@ceew.in</a></p>
+                <p><a href="#" class="text-blue-400 hover:underline">View Map</a></p>
+            </div>
+
+            <!-- Logo -->
+            <div class="flex flex-col items-center justify-center">
+                <img src="static\images\logo.png" alt="CEEW Logo" class="w-48 mb-8">
+            </div>
+
+            <!-- Connect with CEEW -->
+            <div>
+                <h3 class="text-xl font-semibold mb-4">CONNECT WITH CEEW</h3>
+                <div class="flex space-x-4 mb-8">
+                    <a href="https://www.facebook.com/CEEWIndia/" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/CEEWIndia" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/council-on-energy-environment-and-water/" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.youtube.com/channel/UCNF-vGnm1jdA_jhrIpk84Tg" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/ceewindia/" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+                    <a href="https://news.google.com/publications/CAAqBwgKMIvzpgsw8_2-Aw?hl=en-IN&gl=IN&ceid=IN%3Aen" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Developer Credit -->
+        <div class="text-center mt-8">
+            <p class="text-sm text-gray-400">Developed by <span class="font-semibold">Harish</span></p>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="bg-gray-800 py-4">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p>© 2024 CEEW. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+<script src="/static/js/script.js"></script>
+</body>
+</html>
