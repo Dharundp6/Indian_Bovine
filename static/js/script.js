@@ -47,20 +47,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const userInput = document.getElementById('user-input');
     const chatMessages = document.getElementById('chat-messages');
 
+     // Hide chatbot initially
+     chatbot.style.display = 'none';
+
+    // Toggle chat visibility
+    function toggleChat() {
+        if (chatbot.style.display === 'none' || chatbot.style.display === '') {
+            chatbot.style.display = 'block';
+            chatIcon.style.display = 'none';
+        } else {
+            chatbot.style.display = 'none';
+            chatIcon.style.display = 'flex';
+        }
+    }
+
     chatIcon.addEventListener('click', toggleChat);
     closeChat.addEventListener('click', toggleChat);
 
-    function toggleChat() {
-        chatbot.classList.toggle('active');
-    }
-
-    sendButton.addEventListener('click', sendMessage);
-    userInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
-
+    // Send message function for chatbot
     async function sendMessage() {
         const message = userInput.value.trim();
         if (message !== '') {
@@ -97,6 +101,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
     function addMessageToChat(sender, message, className) {
         const messageElement = document.createElement('div');
         messageElement.className = `chat-message ${className}`;
@@ -105,32 +116,31 @@ document.addEventListener('DOMContentLoaded', function() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // Image upload and prediction
+    // Image upload and prediction functionality
     const imageUpload = document.getElementById('image-upload');
-    const uploadArea = imageUpload.parentElement;
+    const uploadArea = document.getElementById('upload-area');
     const predictButton = document.getElementById('predict-button');
     const resultImage = document.getElementById('result-image');
     const detectionResults = document.getElementById('detection-results');
-    const confidenceThreshold = document.getElementById('confidence-threshold');
-    const iouThreshold = document.getElementById('iou-threshold');
+    const predictionResults = document.getElementById('prediction-results');
 
+    // Trigger file input when upload area is clicked
     uploadArea.addEventListener('click', () => imageUpload.click());
 
+    // Handle file selection
     imageUpload.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.className = 'w-full h-auto rounded-lg';
-                uploadArea.innerHTML = '';
-                uploadArea.appendChild(img);
-            }
-            reader.readAsDataURL(file);
+            // Display file name instead of image preview
+            uploadArea.innerHTML = `
+                <p class="text-center">Selected file: ${file.name}</p>
+                <p class="text-center text-sm text-gray-500">(Click to change)</p>
+            `;
+            predictButton.disabled = false;
         }
     });
 
+    // Handle prediction button click
     predictButton.addEventListener('click', async () => {
         const file = imageUpload.files[0];
         if (!file) {
@@ -143,8 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const formData = new FormData();
         formData.append('image', file);
-        formData.append('conf', confidenceThreshold.value);
-        formData.append('iou', iouThreshold.value);
 
         try {
             const response = await fetch('/detect', {
@@ -160,16 +168,35 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Detection response:', data); // Log the full response for debugging
             
             if (data.image && data.objects && data.objects.length > 0) {
-                resultImage.src = data.image;
-                resultImage.classList.remove('hidden');
+                console.log('Image data type:', typeof data.image);
+                console.log('Image data length:', data.image.length);
 
+                // Check if the image data is a base64 string
+                if (typeof data.image === 'string' && data.image.startsWith('data:image')) {
+                    resultImage.src = data.image;
+                } else if (typeof data.image === 'string') {
+                    resultImage.src = `data:image/jpeg;base64,${data.image}`;
+                } else {
+                    throw new Error('Invalid image data format');
+                }
+
+                resultImage.onload = () => {
+                    console.log('Image loaded successfully');
+                    resultImage.style.display = 'block';
+                };
+                resultImage.onerror = (e) => {
+                    console.error('Error loading image:', e);
+                    throw new Error('Failed to load image');
+                };
+
+                // Display detection results
                 detectionResults.innerHTML = `
                     <h3 class="text-lg font-semibold mb-2">Detected Bovines:</h3>
-                    <ul>
+                    <ul class="list-disc pl-5">
                         ${data.objects.map(obj => `<li>${obj.class} (Confidence: ${(obj.confidence * 100).toFixed(2)}%)</li>`).join('')}
                     </ul>
                 `;
-                detectionResults.classList.remove('hidden');
+                predictionResults.style.display = 'block'; // Show the results container
             } else if (data.error) {
                 throw new Error(data.error);
             } else {
@@ -178,10 +205,25 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Error in detection:', error);
             detectionResults.innerHTML = `<p class="text-red-500">Error: ${error.message}</p>`;
-            detectionResults.classList.remove('hidden');
+            predictionResults.style.display = 'block'; // Show the results container even if there's an error
         } finally {
             predictButton.textContent = 'Predict';
             predictButton.disabled = false;
         }
     });
+
+    // Function to check if the image exists in the DOM
+    function checkImageInDOM() {
+        const img = document.getElementById('result-image');
+        if (img) {
+            console.log('Image element exists in DOM');
+            console.log('Image src:', img.src.substring(0, 100) + '...');
+            console.log('Image display style:', img.style.display);
+        } else {
+            console.error('Image element does not exist in DOM');
+        }
+    }
+
+    // Call this function after a short delay to ensure DOM has updated
+    setTimeout(checkImageInDOM, 1000);
 });
