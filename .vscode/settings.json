@@ -33,5 +33,6 @@
         "xyxy",
         "YOLO"
     ],
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "livePreview.defaultPreviewPath": "/templates/index.html"
 }

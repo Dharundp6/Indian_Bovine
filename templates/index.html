@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Indian Bovine Classification</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="static\css\styles.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/styles.css">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -16,7 +21,7 @@
                         primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a","950":"#172554"}
                     }
                 }
-            }
+            }   
         }
     </script>
 </head>
@@ -25,15 +30,36 @@
         <nav class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
                 <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">CEEW</div>
-                <div class="flex items-center space-x-4">
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600" aria-label="toggle menu">
+                        <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+                            <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+                        </svg>
+                    </button>
+                </div>
+    
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-4">
                     <a href="#home" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Home</a>
                     <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">About</a>
-                    <a href="#services" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Learning Curve</a>
+                    <a href="#services" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Model</a>
                     <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Contact</a>
                     <button id="theme-toggle" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 transition-colors duration-300">
                         <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                         <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                     </button>
+                </div>
+            </div>
+    
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#home" class="block text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Home</a>
+                    <a href="#about" class="block text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">About</a>
+                    <a href="#services" class="block text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Model</a>
+                    <a href="#contact" class="block text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Contact</a>
                 </div>
             </div>
         </nav>
@@ -124,7 +150,7 @@
     </div>
     <section id="services" class="mb-20">
         <div class="glassmorphism p-8 transition-all duration-300">
-            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-10 text-center">Research to Action - CEEW's Arc of Learning</h2>
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-10 text-center">How we developed the Model ?</h2>
             <div class="space-y-12">
                 <div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
                     <div class="w-full md:w-1/2 space-y-4">
@@ -132,14 +158,14 @@
                             <img src="static\images\1.png" alt="Identify" class="w-10 h-10">
                             <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Identify & Conceptualize</h3>
                         </div>
-                        <p class="text-gray-700 dark:text-gray-300">Define research questions with healthy skepticism. Build interdisciplinary teams and design robust methodologies to address complex challenges.</p>
+                        <p class="text-gray-700 dark:text-gray-300">Define research questions on Indian bovine breeds. Build interdisciplinary teams for comprehensive breed classification and analysis.</p>
                     </div>
                     <div class="w-full md:w-1/2 space-y-4">
                         <div class="flex items-center space-x-4">
                             <img src="static\images\3.png" alt="Understand" class="w-10 h-10">
                             <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Understand & Analyze</h3>
                         </div>
-                        <p class="text-gray-700 dark:text-gray-300">Conduct thorough research through data collection, maintaining objectivity in methods, and performing evidence-based analysis.</p>
+                        <p class="text-gray-700 dark:text-gray-300">Collect and analyze data on 32 bovine breeds, including 26 indigenous and 6 exotic breeds, utilizing 4850 data points post-augmentation.</p>
                     </div>
                 </div>
                 
@@ -149,14 +175,14 @@
                             <img src="static\images\4.png" alt="Convene" class="w-10 h-10">
                             <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Convene & Communicate</h3>
                         </div>
-                        <p class="text-gray-700 dark:text-gray-300">Present findings and exchange ideas with experts. Deliver core messages to policymakers, leaders, and the public to drive informed decision-making.</p>
+                        <p class="text-gray-700 dark:text-gray-300">Present findings on breed classification, including data augmentation techniques and model performance metrics, to stakeholders in agriculture and animal husbandry.</p>
                     </div>
                     <div class="w-full md:w-1/2 space-y-4">
                         <div class="flex items-center space-x-4">
                             <img src="static\images\6.png" alt="Support" class="w-10 h-10">
                             <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Support & Implement</h3>
                         </div>
-                        <p class="text-gray-700 dark:text-gray-300">Facilitate policy processes and pilot interventions, providing innovative solutions to complex policy challenges.</p>
+                        <p class="text-gray-700 dark:text-gray-300">Implement YOLOv8.2.1 model for bovine breed classification, achieving 78-80% accuracy. Support decision-making in biodiversity conservation and livestock management.</p>
                     </div>
                 </div>
                 
@@ -166,14 +192,14 @@
                             <img src="static\images\7.png" alt="Reflect" class="w-10 h-10">
                             <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Reflect & Learn</h3>
                         </div>
-                        <p class="text-gray-700 dark:text-gray-300">Critically evaluate our research and actions, measure key metrics, and learn from both successes and failures to continuously improve our approach.</p>
+                        <p class="text-gray-700 dark:text-gray-300">Evaluate model performance, analyzing class-wise precision, recall, and mean Average Precision. Identify areas for improvement in breed classification accuracy.</p>
                     </div>
                     <div class="w-full md:w-1/2 space-y-4">
                         <div class="flex items-center space-x-4">
                             <img src="static\images\8.png" alt="Evolve" class="w-10 h-10">
                             <h3 class="text-xl font-semibold text-primary-600 dark:text-primary-400">Evolve & Innovate</h3>
                         </div>
-                        <p class="text-gray-700 dark:text-gray-300">Adapt and refine our approaches based on lessons learned, addressing new challenges and opportunities to ensure lasting impact and continuous improvement.</p>
+                        <p class="text-gray-700 dark:text-gray-300">Continuously refine the model through fine-tuning, dataset diversification, and exploration of advanced techniques to enhance breed classification accuracy and applicability.</p>
                     </div>
                 </div>
             </div>
@@ -238,96 +264,94 @@
     </section>
     </main>
     <footer class="bg-gray-900 text-white">
-        <!-- Statistics Banner -->
-        <div class="bg-cover bg-center py-10" style="background-image: url('static\images\9.jpg');">
+        <!-- Ready for next project section -->
+        <div class="bg-indigo-400 py-8">
+            <div class="container mx-auto px-4 flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Ready for a next project?</h2>
+                    <p class="text-white">Let's get started!</p>
+                </div>
+                <a href="mailto:haribaabu.v@kct.ac.in?subject=New%20Project%20Inquiry" class="bg-gray-800 text-white px-6 py-2 rounded hover:bg-gray-700 transition duration-300 inline-block">
+                    Contact us
+                </a>
+            </div>
+        </div>
+        <!-- Main footer content -->
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo and copyright -->
+                <div class="col-span-1">
+                    <h2 class="text-2xl font-bold mb-4">RAJAX</h2>
+                    <p class="text-sm text-gray-400">© 2024</p>
+                </div>
+                <!-- Customers -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Customers</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Buyer</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Supplier</a></li>
+                    </ul>
+                </div>
+                <!-- Company -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact us</a></li>
+                    </ul>
+                </div>
+                <!-- Further Information -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Further Information</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Social links -->
+        <div class="border-t border-gray-800 py-8">
             <div class="container mx-auto px-4">
-                <p class="text-center text-xl mb-8 font-light">CEEW uses data, integrated analysis, and strategic outreach to explain – and change – the use, reuse, and misuse of resources.</p>
-                <div class="flex flex-wrap justify-center items-center gap-8">
-                    <div class="flex items-center">
-                        <img src="static\images\10.png" alt="Research Projects" class="w-12 h-12 mr-4">
-                        <div>
-                            <p class="text-3xl font-bold">450+</p>
-                            <p class="text-sm">research projects</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <img src="static\images\11.png" alt="Publications" class="w-12 h-12 mr-4">
-                        <div>
-                            <p class="text-3xl font-bold">380+</p>
-                            <p class="text-sm">peer-reviewed publications</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <img src="static\images\12.png" alt="Government Engagements" class="w-12 h-12 mr-4">
-                        <div>
-                            <p class="text-3xl font-bold">1430+</p>
-                            <p class="text-sm">government engagements worldwide</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <img src="static\images\13.png" alt="Seminars and Conferences" class="w-12 h-12 mr-4">
-                        <div>
-                            <p class="text-3xl font-bold">540+</p>
-                            <p class="text-sm">seminars and conferences</p>
-                        </div>
-                    </div>
+                <div class="flex justify-end space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-medium-m"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    
-       <footer class="bg-gray-900 text-white">
-    <div class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-            <!-- Contact Information -->
-            <div>
-                <h3 class="text-xl font-semibold mb-4">CONTACT US</h3>
-                <p class="mb-2">Council on Energy, Environment and Water</p>
-                <p class="mb-2">ISID Campus, 4, Vasant Kunj Institutional Area</p>
-                <p class="mb-4">New Delhi - 110070, India</p>
-                <p class="mb-2"><a href="tel:+911140733300" class="hover:text-blue-400 transition-colors duration-300">+91 11 4073 3300</a></p>
-                <p class="mb-2"><a href="mailto:info@ceew.in" class="hover:text-blue-400 transition-colors duration-300">info@ceew.in</a></p>
-                <p class="mb-4"><a href="mailto:jobs@ceew.in" class="hover:text-blue-400 transition-colors duration-300">jobs@ceew.in</a></p>
-                <p><a href="#" class="text-blue-400 hover:underline">View Map</a></p>
-            </div>
+    </footer>
 
-            <!-- Logo -->
-            <div class="flex flex-col items-center justify-center">
-                <img src="static\images\logo.png" alt="CEEW Logo" class="w-48 mb-8">
-            </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/static/js/script.js"></script>
+    <script>
 
-            <!-- Connect with CEEW -->
-            <div>
-                <h3 class="text-xl font-semibold mb-4">CONNECT WITH CEEW</h3>
-                <div class="flex space-x-4 mb-8">
-                    <a href="https://www.facebook.com/CEEWIndia/" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-facebook"></i></a>
-                    <a href="https://x.com/CEEWIndia" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/company/council-on-energy-environment-and-water/" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.youtube.com/channel/UCNF-vGnm1jdA_jhrIpk84Tg" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.instagram.com/ceewindia/" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-instagram"></i></a>
-                    <a href="https://news.google.com/publications/CAAqBwgKMIvzpgsw8_2-Aw?hl=en-IN&gl=IN&ceid=IN%3Aen" class="text-2xl hover:text-blue-400 transition-colors duration-300"><i class="fab fa-medium"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Developer Credit -->
-        <div class="text-center mt-8">
-            <p class="text-sm text-gray-400">Developed by <span class="font-semibold">Harish</span></p>
-        </div>
-    </div>
-
-    <!-- Copyright -->
-    <div class="bg-gray-800 py-4">
-        <div class="container mx-auto px-4 text-center text-sm">
-            <p>© 2024 CEEW. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
-<script>
-    // Add this script for mobile menu toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-</script>
-<script src="/static/js/script.js"></script>
-</body>
-</html>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+    </body>
+    </html>
