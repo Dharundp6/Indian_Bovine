@@ -39,6 +39,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Mobile menu functionality
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when a link is clicked
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const isClickInsideMenu = mobileMenu.contains(event.target);
+        const isClickOnMenuButton = mobileMenuButton.contains(event.target);
+        if (!isClickInsideMenu && !isClickOnMenuButton && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+        }
+    });
+
     // Chatbot functionality
     const chatIcon = document.getElementById('chat-icon');
     const chatbot = document.getElementById('chatbot');
@@ -47,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const userInput = document.getElementById('user-input');
     const chatMessages = document.getElementById('chat-messages');
 
-     // Hide chatbot initially
-     chatbot.style.display = 'none';
+    // Hide chatbot initially
+    chatbot.style.display = 'none';
 
     // Toggle chat visibility
     function toggleChat() {
